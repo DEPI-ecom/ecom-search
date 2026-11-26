@@ -1,0 +1,21 @@
+{
+    "name": "ecom-search",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "nodemon src/server.js",
+        "start": "node src/server.js",
+        "test": "node --test"
+    },
+    "dependencies": {
+        "dotenv": "^16.4.7",
+        "express": "^5.1.0",
+        "helmet": "^8.1.0",
+        "zod": "^3.25.76"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.10",
+        "supertest": "^7.1.4"
+    }
+}
