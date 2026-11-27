@@ -1,0 +1,23 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    env:
+      NODE_ENV: test
+      CATALOG_SERVICE_URL: http://localhost:3002
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install
+        run: if [ -f package-lock.json ]; then npm ci; else npm install; fi
+      - run: npm test
+      - name: Build image
+        if: hashFiles('Dockerfile') != ''
+        run: docker build -t ecom-search:ci .
